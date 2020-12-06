@@ -4,7 +4,7 @@ const readline = require('readline-sync');
 
 const liveServer = require('live-server');
 
-var params = {
+const params = {
   port: 8181,
   host: "0.0.0.0",
   root: "./",
