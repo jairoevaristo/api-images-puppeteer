@@ -2,6 +2,21 @@ const puppeteer = require('puppeteer');
 const fs = require('fs');
 const readline = require('readline-sync');
 
+const liveServer = require('live-server');
+
+var params = {
+  port: 8181,
+  host: "0.0.0.0",
+  root: "./",
+  open: true,
+  ignore: 'scss,my/templates',
+  file: "index.html",
+  wait: 1000,
+  mount: [['/components', './node_modules']],
+  logLevel: 2,
+  middleware: [function(req, res, next) { next(); }]
+};
+
 const search = readline.question('Qual Categoria Deseja Buscar Imagens: ');
 
 (async () => {
@@ -26,3 +41,5 @@ const search = readline.question('Qual Categoria Deseja Buscar Imagens: ');
   console.log('Finish !');
 
 })();
+
+liveServer.start(params);

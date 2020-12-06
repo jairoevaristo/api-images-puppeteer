@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt_br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>List Photos</title>
+</head>
+<style>
+
+  * {
+    padding: 0;
+    margin: 0;
+    background-color: #343433;
+  }
+    #app {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    h1 {
+      font-size: 40px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      text-align: center;
+
+      color: #fff;
+
+      margin: 34px 0;
+    }
+
+    img {
+      width: 380px;
+      height: 380px;
+
+      border: solid 2px #ccc;
+
+      cursor: pointer;
+
+      transition: all ease-in-out .2s;
+    }
+
+    img:hover {
+      transform: translateY(-5px);
+    }
+
+    img:active {
+      transform: scale(.95);
+    }
+
+    li {
+      list-style: none;
+    }
+</style>
+<body>
+  <h1>List of Category</h1>
+  <div id="app"></div>
+</body>
+
+<script>
+  (async () => {
+      const result = await fetch('./instagram.json');
+      const photos = await result.json();
+
+      const photosHTML = photos.map((img) => `<li><a href="${img.photoURI}" target="_blank"><img src="${img.photoURI}" /></a></li>`).join('');
+
+      document.querySelector('#app').innerHTML = photosHTML;
+  })();
+
+</script>
+
+</html>
